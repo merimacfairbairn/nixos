@@ -3,6 +3,7 @@
   flake.nixosModules.hummingbirdConfig = { pkgs, lib, ... }: {
   imports = [
       self.nixosModules.hummingbirdHardware
+      self.nixosModules.niri
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

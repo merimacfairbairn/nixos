@@ -1,15 +1,20 @@
 { self, inputs, ... }: {
-    flake.nixosModules.hummingbirdHardware = { config, lib, pkgs, modulesPath, ... }:
 
-    {
-        imports =
-            [ (modulesPath + "/installer/scan/not-detected.nix")
-            ];
+    flake.nixosModules.hummingbirdHardware = { config, lib, pkgs, modulesPath, ... }: {
+
+        imports = [
+            (modulesPath + "/installer/scan/not-detected.nix")
+        ];
 
         boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ];
         boot.initrd.kernelModules = [ ];
         boot.kernelModules = [ ];
         boot.extraModulePackages = [ ];
+
+        boot.loader.systemd-boot.enable = true;
+        boot.loader.systemd-boot.graceful = true;
+        boot.loader.efi.canTouchEfiVariables = true;
+        boot.kernelPackages = pkgs.linuxPackages_latest;
 
         fileSystems."/" =
         { device = "/dev/mapper/lukscontainer";
@@ -54,4 +59,5 @@
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
-                       }
+
+}
