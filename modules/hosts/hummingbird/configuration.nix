@@ -1,12 +1,15 @@
 { self, inputs, ... }: {
 
   flake.nixosModules.hummingbirdConfig = { pkgs, lib, ... }: {
-  imports = [
+    imports = [
       self.nixosModules.hummingbirdHardware
       self.nixosModules.niri
     ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
     environment.systemPackages = with pkgs; [
       vim
@@ -17,6 +20,5 @@
 
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
     system.stateVersion = "26.05"; # Did you read the comment?
-    };
+  };
 }
-
