@@ -7,27 +7,36 @@
     };
   };
 
-  perSystem = { pkgs, lib, self', ... }: {
+  perSystem =
+    {
+      pkgs,
+      lib,
+      self',
+      ...
+    }:
+    {
 
-    packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
-      inherit pkgs;
+      packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
+        inherit pkgs;
 
-      settings = {
-        spawn-at-startup = [
-          (lib.getExe self'.packages.myNoctalia)
-        ];
+        settings = {
+          spawn-at-startup = [
+            (lib.getExe self'.packages.myNoctalia)
+          ];
 
-        input.keyboard = {
-          xkb.layout = "us";
-        };
+          xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-        layout.gaps = 5;
+          input.keyboard = {
+            xkb.layout = "us";
+          };
 
-        binds = {
-          "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-          "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
+          layout.gaps = 5;
+
+          binds = {
+            "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+            "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
+          };
         };
       };
     };
-  };
 }
