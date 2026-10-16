@@ -13,6 +13,9 @@
       inherit pkgs;
 
       settings = {
+        spawn-at-startup = [
+          (lib.getExe self'.packages.myNoctalia)
+        ];
         input.keyboard = {
           xkb.layout = "us";
         };
@@ -20,6 +23,7 @@
         layout.gaps = 5;
 
         binds = {
+          "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
           "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
         };
       };
