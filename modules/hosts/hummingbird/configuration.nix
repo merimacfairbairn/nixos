@@ -1,12 +1,15 @@
-{ self, inputs, ... }: {
-
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.nixosConfigurations.hummingbird = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.hummingbirdConfig
     ];
   };
 
-  flake.nixosModules.hummingbirdConfig = { pkgs, ... }: {
+  flake.nixosModules.hummingbirdConfig = {pkgs, ...}: {
     imports = [
       self.nixosModules.hummingbirdHardware
       self.nixosModules.base
