@@ -25,7 +25,10 @@
     users.users.aboba = {
       isNormalUser = true;
       initialHashedPassword = "$y$j9T$Q4Wug7I/IGRfjrdzSuh4V1$GFeD17figWIkj1Yk2mO3PAgT5nSK/LguUpUKWYzLh.4";
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+      ];
     };
 
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
