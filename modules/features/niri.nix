@@ -1,12 +1,12 @@
 {
-  self,
   inputs,
+  moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.niri = {pkgs, ...}: {
+  flake.nixosModules.niri = moduleWithSystem ({self', ...}: {
     programs.niri = {
       enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
+      package = self'.packages.niri;
     };
 
     services.displayManager.noctalia-greeter = {
@@ -15,9 +15,13 @@
       settings = {
         keyboard.layout = "us";
         session.default = "niri";
+        appearance = {
+            scheme = "Synced";
+            hide_logo = true;
+        };
       };
     };
-  };
+  });
 
   perSystem = {
     pkgs,
@@ -25,12 +29,12 @@
     self',
     ...
   }: {
-    packages.myNiri = inputs.wrappers.wrappers.niri.wrap {
+    packages.niri = inputs.wrappers.wrappers.niri.wrap {
       inherit pkgs;
 
       settings = {
         spawn-at-startup = [
-          (lib.getExe self'.packages.myNoctalia)
+          (lib.getExe self'.packages.noctalia)
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
@@ -42,7 +46,7 @@
         layout.gaps = 5;
 
         binds = {
-          "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+          "Mod+Space".spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
           "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
         };
       };
