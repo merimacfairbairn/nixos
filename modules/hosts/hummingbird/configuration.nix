@@ -9,23 +9,23 @@
     ];
   };
 
-  flake.nixosModules.hummingbirdConfig = {pkgs, ...}: {
-    imports = with self.nixosModules; [
+  flake.nixosModules.hummingbirdConfig = {pkgs, ...}: let
+    modules = with self.nixosModules; [
       hummingbirdHardware
       base
       niri
     ];
+  in {
+    imports = modules;
 
     environment.systemPackages = with pkgs; [
       vim
       wget
       openssh
+      git
     ];
 
     networking.hostName = "hummingbird";
-    networking.networkmanager.enable = true;
-    time.timeZone = "Europe/London";
-
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
     system.stateVersion = "26.05"; # Did you read the comment?
   };

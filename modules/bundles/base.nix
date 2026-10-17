@@ -9,6 +9,8 @@
       git
       kitty
       user
+      locale
+      networking
     ];
   in {
     imports = modules;
