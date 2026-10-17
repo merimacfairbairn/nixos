@@ -69,10 +69,10 @@
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
-        "wrapper-modules": "wrapper-modules"
+        "wrappers": "wrappers"
       }
     },
-    "wrapper-modules": {
+    "wrappers": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"

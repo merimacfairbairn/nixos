@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
-    wrapper-modules = {
+    wrappers = {
       url = "github:nix-community/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };

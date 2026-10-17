@@ -1,18 +1,16 @@
 {
-  self,
   inputs,
+  moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.base = {pkgs, ...}: let
-    selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
-  in {
+  flake.nixosModules.base = moduleWithSystem ({self', ...}: {...}: {
     environment.systemPackages = [
-      selfpkgs.myGit
+      self'.packages.git
     ];
-  };
+  });
 
   perSystem = {pkgs, ...}: {
-    packages.myGit = inputs.wrapper-modules.wrappers.git.wrap {
+    packages.git = inputs.wrappers.wrappers.git.wrap {
       inherit pkgs;
       package = pkgs.git;
 
