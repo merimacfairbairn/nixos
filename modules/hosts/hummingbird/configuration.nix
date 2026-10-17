@@ -20,7 +20,6 @@
       vim
       wget
       openssh
-      git
     ];
 
     networking.hostName = "hummingbird";
