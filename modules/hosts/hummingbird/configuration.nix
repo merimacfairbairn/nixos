@@ -10,10 +10,10 @@
   };
 
   flake.nixosModules.hummingbirdConfig = {pkgs, ...}: {
-    imports = [
-      self.nixosModules.hummingbirdHardware
-      self.nixosModules.base
-      self.nixosModules.niri
+    imports = with self.nixosModules; [
+      hummingbirdHardware
+      base
+      niri
     ];
 
     environment.systemPackages = with pkgs; [
