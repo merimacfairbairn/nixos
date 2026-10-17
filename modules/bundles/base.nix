@@ -7,6 +7,7 @@
     modules = with self.nixosModules; [
       nix
       git
+      user
     ];
   in {
     imports = modules;
