@@ -1,11 +1,9 @@
 {
-  self,
   inputs,
+  moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.base = {pkgs, ...}: let
-    selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
-  in {
+  flake.nixosModules.base = moduleWithSystem ({self', ...}: {pkgs, ...}: {
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
@@ -15,9 +13,9 @@
     environment.systemPackages = with pkgs; [
       nixd
       alejandra
-      selfpkgs.nh
+      self'.packages.nh
     ];
-  };
+  });
 
   perSystem = {pkgs, ...}: {
     packages.nh = inputs.wrappers.lib.wrapPackage {
