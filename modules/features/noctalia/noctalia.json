@@ -1,10 +1,10 @@
 {
   "settingsVersion": 59,
   "bar": {
-    "barType": "simple",
+    "barType": "floating",
     "position": "left",
     "monitors": [],
-    "density": "default",
+    "density": "comfortable",
     "showOutline": false,
     "showCapsule": true,
     "capsuleOpacity": 1,
@@ -28,14 +28,14 @@
     "widgets": {
       "left": [
         {
-          "colorizeSystemIcon": "none",
+          "colorizeSystemIcon": "tertiary",
           "colorizeSystemText": "none",
           "customIconPath": "",
-          "enableColorization": false,
+          "enableColorization": true,
           "icon": "rocket",
           "iconColor": "none",
           "id": "Launcher",
-          "useDistroLogo": false
+          "useDistroLogo": true
         },
         {
           "clockColor": "none",
@@ -162,11 +162,11 @@
         },
         {
           "colorizeDistroLogo": false,
-          "colorizeSystemIcon": "none",
+          "colorizeSystemIcon": "primary",
           "colorizeSystemText": "none",
           "customIconPath": "",
-          "enableColorization": false,
-          "icon": "noctalia",
+          "enableColorization": true,
+          "icon": "settings-2",
           "id": "ControlCenter",
           "useDistroLogo": false
         }
@@ -184,7 +184,7 @@
     "screenOverrides": []
   },
   "general": {
-    "avatarImage": "/home/aboba/.face",
+    "avatarImage": "",
     "dimmerOpacity": 0.2,
     "showScreenCorners": false,
     "forceBlackScreenCorners": false,
@@ -248,7 +248,7 @@
     "smoothScrollEnabled": true
   },
   "ui": {
-    "fontDefault": "Liberation Sans",
+    "fontDefault": "DejaVu Sans Condensed",
     "fontFixed": "DejaVu Sans Mono",
     "fontDefaultScale": 1,
     "fontFixedScale": 1,
@@ -265,7 +265,7 @@
     "name": "Dorking",
     "weatherEnabled": true,
     "weatherShowEffects": true,
-    "weatherTaliaMascotAlways": true,
+    "weatherTaliaMascotAlways": false,
     "useFahrenheit": false,
     "use12hourFormat": false,
     "showWeekNumberInCalendar": false,
@@ -414,7 +414,7 @@
         "id": "audio-card"
       },
       {
-        "enabled": false,
+        "enabled": true,
         "id": "brightness-card"
       },
       {
