@@ -12,6 +12,15 @@
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
     };
+
+    services.displayManager.noctalia-greeter = {
+      enable = true;
+
+      settings = {
+        keyboard.layout = "us";
+        session.default = "niri";
+      };
+    };
   };
 
   perSystem = {
