@@ -3,14 +3,6 @@
   inputs,
   ...
 }: {
-  perSystem = {pkgs, ...}: {
-    packages.nh = inputs.wrapper-modules.lib.wrapPackage {
-      inherit pkgs;
-      package = pkgs.nh;
-      env.NH_FLAKE = "$HOME/nixconf";
-    };
-  };
-
   flake.nixosModules.base = {pkgs, ...}: let
     selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
   in {
@@ -25,5 +17,13 @@
       alejandra
       selfpkgs.nh
     ];
+  };
+
+  perSystem = {pkgs, ...}: {
+    packages.nh = inputs.wrapper-modules.lib.wrapPackage {
+      inherit pkgs;
+      package = pkgs.nh;
+      env.NH_FLAKE = "$HOME/nixconf";
+    };
   };
 }
