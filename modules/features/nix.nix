@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.base = moduleWithSystem ({self', ...}: {pkgs, ...}: {
+  flake.nixosModules.nix = moduleWithSystem ({self', ...}: {pkgs, ...}: {
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
