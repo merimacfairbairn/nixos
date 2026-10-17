@@ -40,7 +40,10 @@
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
         input.keyboard = {
-          xkb.layout = "us";
+          xkb = {
+              layout = "us,ru";
+              options = "grp:shifts_toggle";
+          };
         };
 
         layout.gaps = 5;
