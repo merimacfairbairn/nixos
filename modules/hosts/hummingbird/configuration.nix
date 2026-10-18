@@ -7,10 +7,8 @@
     modules = with self.nixosModules; [
       hummingbirdConfig
       hummingbirdHardware
-      base
-      niri
+      desktop
       development
-      kitty
     ];
   };
 
