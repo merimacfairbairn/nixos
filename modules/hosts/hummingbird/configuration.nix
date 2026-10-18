@@ -15,6 +15,7 @@
       base
       niri
       development
+      kitty
     ];
   in {
     imports = modules;
