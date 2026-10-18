@@ -16,8 +16,8 @@
         keyboard.layout = "us";
         session.default = "niri";
         appearance = {
-            scheme = "Synced";
-            hide_logo = true;
+          scheme = "Synced";
+          hide_logo = true;
         };
       };
     };
@@ -41,8 +41,8 @@
 
         input.keyboard = {
           xkb = {
-              layout = "us,ru";
-              options = "grp:shifts_toggle";
+            layout = "us,ru";
+            options = "grp:shifts_toggle";
           };
         };
 
