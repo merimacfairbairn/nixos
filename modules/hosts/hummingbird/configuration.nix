@@ -4,31 +4,19 @@
   ...
 }: {
   flake.nixosConfigurations.hummingbird = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      self.nixosModules.hummingbirdConfig
-    ];
-  };
-
-  flake.nixosModules.hummingbirdConfig = {pkgs, ...}: let
     modules = with self.nixosModules; [
+      hummingbirdConfig
       hummingbirdHardware
       base
       niri
       development
       kitty
     ];
-  in {
-    imports = modules;
+  };
 
-    environment.systemPackages = with pkgs; [
-      vim
-      wget
-      openssh
-      git
-    ];
-
-    networking.hostName = "hummingbird";
-    # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-    system.stateVersion = "26.05"; # Did you read the comment?
+  flake.nixosModules.hummingbirdConfig = {...}: {
+    networking = {
+      hostName = "hummingbird";
+    };
   };
 }
