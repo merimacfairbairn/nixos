@@ -14,6 +14,7 @@
       hummingbirdHardware
       base
       niri
+      development
     ];
   in {
     imports = modules;
