@@ -25,6 +25,8 @@
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     };
 
+    nixpkgs.config.allowUnfree = true;
+
     # Nix tooling
     environment.systemPackages = with pkgs; [
       nixd
