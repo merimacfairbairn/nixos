@@ -1,9 +1,15 @@
 {
+  self,
   inputs,
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.niri = moduleWithSystem ({self', ...}: {
+  flake.nixosModules.niri = moduleWithSystem ({self', ...}: let
+    modules = with self.nixosModules; [
+      kitty
+    ];
+  in {
+    imports = modules;
     programs.niri = {
       enable = true;
       package = self'.packages.niri;
