@@ -11,6 +11,11 @@
     };
 
     nvim.url = "github:merimacfairbairn/nvim";
+
+    hyprland = {
+      url = "github:merimacfairbairn/hypr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
