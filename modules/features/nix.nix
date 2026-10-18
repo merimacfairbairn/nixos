@@ -12,8 +12,6 @@
           "nix-command"
           "flakes"
         ];
-
-        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
       };
 
       gc = {
@@ -23,6 +21,8 @@
       };
 
       optimise.automatic = true;
+
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     };
 
     # Nix tooling
