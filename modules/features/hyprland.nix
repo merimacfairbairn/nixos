@@ -14,7 +14,7 @@
     modules = with self.nixosModules; [
       audio
       systemTheme
-      # quickshell
+      quickshell
     ];
 
     runtimePkgs = self'.packages.hyprland.passthru.runtimePackages;
@@ -103,10 +103,10 @@
           inputs.hyprland.lib.defaultRuntimePkgs.${system}
           // {
             kitty = self'.packages.kitty;
-            # wpaperd = self'.packages.wpaperd;
+            wpaperd = self'.packages.wpaperd;
             # otter-launcher = self'.packages.otter-launcher;
             # hyprlock = self'.packages.hyprlock;
-            # quickshell = self'.packages.quickshell;
+            quickshell = self'.packages.quickshell;
           };
       };
     };
