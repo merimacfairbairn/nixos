@@ -6,7 +6,7 @@
 }: {
   flake.nixosModules.niri = moduleWithSystem ({self', ...}: let
     modules = with self.nixosModules; [
-      kitty
+      audio
     ];
   in {
     imports = modules;
