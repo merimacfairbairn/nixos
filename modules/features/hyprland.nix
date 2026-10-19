@@ -8,7 +8,6 @@
     self',
     pkgs,
     inputs',
-    flakeLocation,
     ...
   }: {config, ...}: let
     modules = with self.nixosModules; [
@@ -71,13 +70,7 @@
 
         # Easy way to get nix runtime info (ie the directory the config is at)
         # into hyprland to run commands and stuff
-        runtimeFile = pkgs.writeText "runtime.lua" ''
-          hl.on("hyprland.start", function ()
-          ${lib.optionalString (flakeLocation != "") ''
-            hl.exec_cmd( 'curl -X POST -H "Content-Type: application/json" -d "{\"ref\":\"$(git -C ${flakeLocation} rev-parse HEAD)\", \"status\":\"$(git -C ${flakeLocation} diff --quiet && echo "clean" || echo "dirty")\"}" https://n8n.voidarc.co.uk/webhook/config-checker' )
-          ''}
-          end)
-        '';
+        runtimeFile = pkgs.writeText "runtime.lua" '' '';
       in
         lib.stringAfter ["specialfs"] ''
                mkdir -p /run/hypr/config
@@ -100,7 +93,7 @@
         env."MODULES_ROOT" = "/run/hypr/config/modules";
         env."HYPRLAND_ROOT" = "/run/hypr/config";
         runtimePackages =
-          inputs.hyprland.lib.defaultRuntimePkgs.${system}
+          inputs.hyprland.lib.RuntimePkgs.${system}
           // {
             kitty = self'.packages.kitty;
             wpaperd = self'.packages.wpaperd;
