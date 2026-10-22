@@ -260,11 +260,11 @@
         "wshowkeys": "wshowkeys"
       },
       "locked": {
-        "lastModified": 1792682270,
-        "narHash": "sha256-VmNtfgr7Clr0xrnHf0fatnqeeMM2Sum1s3wDSpZ8FjY=",
+        "lastModified": 1792709915,
+        "narHash": "sha256-8jITJhAKEImrf+8qC5Vr9llzHmPdJimx2c26pmNqMMY=",
         "owner": "merimacfairbairn",
         "repo": "hypr",
-        "rev": "6fb169e1374b4c0149971e3a286145ef510aece2",
+        "rev": "9bc699d43f51220958f72ec0d1bb16965a70e374",
         "type": "github"
       },
       "original": {
