@@ -50,6 +50,8 @@
   }: {
     packages = {
       hyprland = inputs'.hyprland.packages.default.wrap {
+	wrapperImplementation = "binary";
+
         runtimePkgs = with self'.packages; [
           {
             data = kitty;
