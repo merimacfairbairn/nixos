@@ -2,7 +2,7 @@
   flake.nixosModules.desktop = let
     modules = with self.nixosModules; [
       base
-      niri
+      hyprland
     ];
   in {
     imports = modules;
