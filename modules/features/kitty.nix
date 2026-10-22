@@ -44,7 +44,7 @@
         keybindings = {
           "ctrl+backspace" = "send_text all \\x17";
         };
-        themeFile = "GruvboxMaterialDarkHard";
+        themeFile = "Catppuccin-Mocha";
       };
   };
 }
