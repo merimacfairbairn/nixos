@@ -5,12 +5,14 @@
 }: {
   flake.nixosModules.hyprlock = moduleWithSystem ({self', ...}: {
     environment.systemPackages = with self'.packages; [
-      hyprock
+      hyprlock
     ];
   });
+
   perSystem = {pkgs, ...}: {
     packages.hyprlock = inputs.wrappers.wrappers.hyprlock.wrap {
       inherit pkgs;
+
       "hyprlock.conf".content = ''
         source = ${./mocha.conf}
 
@@ -25,16 +27,13 @@
 
         # BACKGROUND
         background {
-          monitor =
           path = screenshot
           blur_passes = 3
-          color = rgba(0, 0, 0, 0)
+          color = rgba(00000000)
         }
-
 
         # LAYOUT
         label {
-          monitor =
           text = Layout: $LAYOUT
           color = $text
           font_size = 25
@@ -46,7 +45,6 @@
 
         # TIME
         label {
-          monitor =
           text = $TIME
           color = $text
           font_size = 90
@@ -58,7 +56,6 @@
 
         # DATE
         label {
-          monitor =
           text = cmd[update:43200000] date +"%A, %d %B %Y"
           color = $text
           font_size = 25
@@ -69,28 +66,29 @@
         }
 
         # FINGERPRINT
-        {
-          monitor = "";
-          text = "$FPRINTPROMPT";
-          color = "$text";
-          font_size = 14;
-          font_family = $font;
-          position = "0, -107";
-          halign = "center";
-          valign = "center";
+        label {
+          text = $FPRINTPROMPT
+          color = $text
+          font_size = 14
+          font_family = $font
+          position = 0, -107
+          halign = center
+          valign = center
         }
 
+        # CAT
         image {
           path = ${./cat.png}
           size = 240
-          border_color = transparent
+          border_color = rgba(00000000)
           rounding = 0
-          position = 0, 7px
+          position = 0, 7
+          halign = center
+          valign = center
         }
 
         # USER AVATAR
         image {
-          monitor =
           path = $HOME/.face
           size = 100
           border_color = $accent
@@ -101,7 +99,6 @@
 
         # INPUT FIELD
         input-field {
-          monitor =
           size = 300, 60
           outline_thickness = 4
           dots_size = 0.2
@@ -121,7 +118,6 @@
           halign = center
           valign = center
         }
-
       '';
     };
   };
