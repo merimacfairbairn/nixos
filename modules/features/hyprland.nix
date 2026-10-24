@@ -73,7 +73,10 @@
             data = way-edges;
             prefix = true;
           }
-          # hyprlock = self'.packages.hyprlock;
+          {
+            data = hyprlock;
+            prefix = true;
+          }
         ];
       };
     };
