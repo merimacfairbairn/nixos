@@ -69,6 +69,10 @@
             data = otter-launcher;
             prefix = true;
           }
+          {
+            data = way-edges;
+            prefix = true;
+          }
           # hyprlock = self'.packages.hyprlock;
         ];
       };
