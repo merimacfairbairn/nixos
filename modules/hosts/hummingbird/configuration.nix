@@ -9,6 +9,7 @@
       hummingbirdHardware
       desktop
       development
+      upower
     ];
   };
 
