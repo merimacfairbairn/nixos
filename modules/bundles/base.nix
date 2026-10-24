@@ -5,6 +5,7 @@
       user
       locale
       networking
+      hardware
     ];
   in {
     imports = modules;
