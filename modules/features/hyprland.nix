@@ -50,7 +50,7 @@
   }: {
     packages = {
       hyprland = inputs'.hyprland.packages.default.wrap {
-	wrapperImplementation = "binary";
+        wrapperImplementation = "binary";
 
         runtimePkgs = with self'.packages; [
           {
@@ -65,7 +65,10 @@
             data = wpaperd;
             prefix = true;
           }
-          # otter-launcher = self'.packages.otter-launcher;
+          {
+            data = otter-launcher;
+            prefix = true;
+          }
           # hyprlock = self'.packages.hyprlock;
         ];
       };

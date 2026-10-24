@@ -18,8 +18,13 @@
     };
 
     quickshell = {
-        url = "github:merimacfairbairn/quickshell";
-        flake = false;
+      url = "github:merimacfairbairn/quickshell";
+      flake = false;
+    };
+
+    otter-launcher = {
+      url = "github:kuokuo123/otter-launcher";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
