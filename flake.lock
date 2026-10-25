@@ -299,11 +299,11 @@
         "wshowkeys": "wshowkeys"
       },
       "locked": {
-        "lastModified": 1792880259,
-        "narHash": "sha256-/hGuMiZtGS45UiUpDHGpa/+kX2sw9cMK6MtT6CsGLJQ=",
+        "lastModified": 1792923415,
+        "narHash": "sha256-hrePrrWzRG76wGzpbQDuZfrqDVAUYo/wntrA6haBx1I=",
         "owner": "merimacfairbairn",
         "repo": "hypr",
-        "rev": "7391327110f8abbdcb680aeae4e8fcdfd7e0c437",
+        "rev": "67f19443a21c9a30589403ffeaed0505e825799f",
         "type": "github"
       },
       "original": {
@@ -829,11 +829,11 @@
     "quickshell": {
       "flake": false,
       "locked": {
-        "lastModified": 1790440634,
-        "narHash": "sha256-5kU5Ryam1gIyt7mfDqtHYk+bUYmuDh00HpeUGzZqz0k=",
+        "lastModified": 1792919618,
+        "narHash": "sha256-cjyKmjOoUEgjNILc1jnPJMtlfx+Mg211795IG/6aZiw=",
         "owner": "merimacfairbairn",
         "repo": "quickshell",
-        "rev": "297f3fe688c8039262796e8b56c975d9398c2a12",
+        "rev": "b88408446d22a36928b3aa6f4e597c6442907f6a",
         "type": "github"
       },
       "original": {
