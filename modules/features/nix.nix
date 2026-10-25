@@ -36,7 +36,11 @@
     ];
   });
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    flakeLocation,
+    ...
+  }: {
     _module.args = {
       flakeLocation = builtins.getEnv "PWD";
     };
@@ -46,7 +50,7 @@
 
       package = pkgs.nh;
       env = {
-        "NH_FLAKE" = "$HOME/nixconf";
+        "NH_FLAKE" = flakeLocation;
       };
     };
   };
