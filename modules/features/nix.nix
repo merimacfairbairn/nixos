@@ -7,6 +7,7 @@
     nix = {
       settings = {
         cores = 6;
+        trusted-users = ["root" "aboba"];
         download-buffer-size = 524288000;
         experimental-features = [
           "nix-command"
@@ -36,6 +37,10 @@
   });
 
   perSystem = {pkgs, ...}: {
+    _module.args = {
+      flakeLocation = builtins.getEnv "PWD";
+    };
+
     packages.nh = inputs.wrappers.lib.wrapPackage {
       inherit pkgs;
 

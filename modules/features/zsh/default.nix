@@ -30,10 +30,12 @@
     pkgs,
     self',
     lib,
+    flakeLocation,
     ...
   }: {
     packages = {
-      zsh = inputs.wrappers.wrappers.zsh.wrap {
+      zsh = lib.warnIf (flakeLocation == "") "Flake Location is undefined. Are you building in the right directory?"
+      inputs.wrappers.wrappers.zsh.wrap {
         inherit pkgs;
 
         runtimePkgs = [pkgs.carapace pkgs.devenv pkgs.fzf];
@@ -43,7 +45,15 @@
           v = lib.getExe self'.packages.nvim;
           cat = lib.getExe pkgs.bat;
           nsh = "nix-shell -p";
-          nrs = "sudo nixos-rebuild switch --flake . )";
+          nrs =
+            if flakeLocation != ""
+            then "( cd ${flakeLocation} && sudo nixos-rebuild switch --impure --flake . )"
+            else "echo 'Flake location not specified. Did you build with --impure?'";
+
+          vinix =
+            if flakeLocation != ""
+            then "nvim --cmd 'cd ${flakeLocation}'"
+            else "echo 'Flake location not specified. Did you build with --impure?'";
         };
 
         zshrc.content = ''
