@@ -1,11 +1,10 @@
 {self, ...}: {
-    flake.nixosModules.bootconfig = let
+  flake.nixosModules.bootconfig = let
     modules = with self.nixosModules; [
       self.diskoConfigurations.btrfs-luks-swap
-      secure-boot-with-tpm
+      sbWithTpm
     ];
-
-    in {
-      imports = modules;
-    };
+  in {
+    imports = modules;
+  };
 }
