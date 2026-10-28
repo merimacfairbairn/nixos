@@ -21,8 +21,5 @@
         includeMicrosoftKeys = true;
       };
     };
-
-    boot.initrd.systemd.enable = true;
-    security.tpm2.enable = true;
   };
 }
