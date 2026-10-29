@@ -6,10 +6,12 @@
   flake.nixosConfigurations.mobile01 = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
       mobile01Config
-      mobile01Hardware
       desktop
       development
       upower
+
+      preservation
+      self.diskoConfigurations.tmpfsRoot
     ];
   };
 

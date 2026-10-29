@@ -12,7 +12,7 @@
       diskDevice = lib.mkOption {
         type = lib.types.str;
         description = "Target disk, e.g. /dev/disk/by-id/nvme-...";
-        default = "/dev/sda"
+        default = "/dev/sda";
       };
       swapSize = lib.mkOption {
         type = lib.types.str;
@@ -56,10 +56,10 @@
                 type = "luks";
                 name = "cryptroot";
                 passwordFile = "/tmp/luks-pass"; # install-time only
-                  settings = {
-                    allowDiscards = true;
-                    crypttabExtraOpts = ["tpm2-device=auto"];
-                  };
+                settings = {
+                  allowDiscards = true;
+                  crypttabExtraOpts = ["tpm2-device=auto"];
+                };
                 content = {
                   type = "btrfs";
                   extraArgs = ["-f"];
