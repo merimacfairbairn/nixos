@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.diskoConfigurations.btrfs-luks-swap = {
+  flake.diskoConfigurations.tmpfsRoot = {
     lib,
     config,
     ...
