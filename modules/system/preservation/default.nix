@@ -27,7 +27,10 @@
           "/var/log"
           "/var/lib/bluetooth"
           "/etc/NetworkManager/system-connections"
-          "/tmp"
+          {
+            directory = "/tmp";
+            mode = "1777";
+          }
         ];
 
         users.aboba = {
