@@ -9,8 +9,8 @@
       desktop
       development
       upower
-
       preservation
+
       self.diskoConfigurations.tmpfsRoot
     ];
   };
@@ -19,5 +19,9 @@
     networking = {
       hostName = "mobile01";
     };
+
+    imports = [
+      ./_hardware-configuration.nix
+    ];
   };
 }

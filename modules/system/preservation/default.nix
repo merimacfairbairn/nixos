@@ -1,10 +1,19 @@
-{config, ...}: {
+{inputs, ...}: {
   flake.nixosModules.preservation = {
+    imports = [inputs.preservation.nixosModules.default];
+
     boot.tmp.cleanOnBoot = true;
+
+    boot.loader = {
+      grub.enable = false;
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
     preservation = {
       enable = true;
 
-      preserveAt."/persistent" = {
+      preserveAt."/persist" = {
         files = [
           {
             file = "/etc/machine-id";
@@ -21,7 +30,7 @@
           "/tmp"
         ];
 
-        users.${config.preferences.user.name} = {
+        users.aboba = {
           files = [];
           directories = [
             ".local/state/wireplumber"

@@ -21,7 +21,7 @@
     };
 
     config = {
-      fileSystems."/var/log".neededForBoot = true;
+      fileSystems."/persist".neededForBoot = true;
       fileSystems."/nix".neededForBoot = true;
 
       disko.devices.nodev = {
