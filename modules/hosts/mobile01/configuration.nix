@@ -12,6 +12,7 @@
       preservation
 
       self.diskoConfigurations.tmpfsRoot
+      securebootTPM
     ];
   };
 

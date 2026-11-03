@@ -1,5 +1,6 @@
 {
   inputs = {
+    # Essentials
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -10,6 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Apps
     nvim.url = "github:merimacfairbairn/nvim";
 
     hyprland = {
@@ -27,10 +29,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Additional dependencies
     preservation.url = "github:nix-community/preservation";
 
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
