@@ -35,9 +35,4 @@
     #   };
     # };
   };
-
-  preservation.persistAt."/persist" = {
-    files = ["/var/lib/auto-cryptenroll"];
-    directories = ["/var/lib/sbctl"];
-  };
 }
