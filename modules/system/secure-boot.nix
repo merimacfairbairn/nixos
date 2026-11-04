@@ -23,17 +23,17 @@
     };
 
     # Enable measured boot
-    boot.lanzaboote = {
-      configurationLimit = 4;  # Limit generations to 4 to prement error
-      measuredBoot = {
-        enable = true;
-        pcrs = [
-          0
-          4
-          7
-        ];
-      };
-    };
+    # boot.lanzaboote = {
+    #   configurationLimit = 4;  # Limit generations to 4 to prement error
+    #   measuredBoot = {
+    #     enable = true;
+    #     pcrs = [
+    #       0
+    #       4
+    #       7
+    #     ];
+    #   };
+    # };
 
   };
 }
