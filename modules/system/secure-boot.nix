@@ -21,5 +21,19 @@
         includeMicrosoftKeys = true;
       };
     };
+
+    # Enable measured boot
+    boot.initrd.systemd.enable = true;
+    boot.lanzaboote = {
+      measuredBoot = {
+        enable = true;
+        pcrs = [
+          0
+          4
+          7
+        ];
+      };
+    };
+
   };
 }
