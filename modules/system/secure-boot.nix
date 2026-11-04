@@ -14,7 +14,7 @@
     boot.lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
-      # Recent lanzaboote only; check the README for your pinned release.
+
       autoGenerateKeys.enable = true;
       autoEnrollKeys = {
         enable = true;
@@ -23,8 +23,8 @@
     };
 
     # Enable measured boot
-    boot.initrd.systemd.enable = true;
     boot.lanzaboote = {
+      configurationLimit = 4;  # Limit generations to 4 to prement error
       measuredBoot = {
         enable = true;
         pcrs = [
