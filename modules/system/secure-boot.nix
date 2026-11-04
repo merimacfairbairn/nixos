@@ -36,4 +36,6 @@
     # };
 
   };
+
+  preservation.persistAt."/persist".files = [/var/lib/auto-cryptenroll];
 }
