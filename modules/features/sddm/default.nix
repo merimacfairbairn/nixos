@@ -1,11 +1,6 @@
 {
-  self,
-  inputs,
-  ...
-}: {
   flake.modules.nixos.sddm = {
     pkgs,
-    lib,
     ...
   }: {
     environment.systemPackages = [

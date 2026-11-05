@@ -3,11 +3,11 @@
   moduleWithSystem,
   ...
 }: {
-  flake.modules.nixos.nix = moduleWithSystem ({self', ...}: {pkgs, ...}: {
+  flake.modules.nixos.nix = moduleWithSystem ({self', ...}: {pkgs, config, ...}: {
     nix = {
       settings = {
         cores = 6;
-        trusted-users = ["root" "aboba"];
+        trusted-users = ["root" "${config.preferences.mainUser.username}"];
         download-buffer-size = 524288000;
         experimental-features = [
           "nix-command"

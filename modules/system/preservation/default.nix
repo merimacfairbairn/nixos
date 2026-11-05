@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.modules.nixos.preservation = {
+  flake.modules.nixos.preservation = {config, ...}: {
     imports = [inputs.preservation.nixosModules.default];
 
     boot.tmp.cleanOnBoot = true;
@@ -33,7 +33,7 @@
           }
         ];
 
-        users.aboba = {
+        users.${config.preferences.mainUser.username} = {
           files = [];
           directories = [
             ".local/state/wireplumber"

@@ -6,7 +6,7 @@
     ...
   }: let
     inherit (lib) mkOption types;
-    username = config.preferences.user.name;
+    username = config.preferences.mainUser.username;
 
     modules = with self.modules.nixos; [
       zsh
@@ -14,9 +14,9 @@
   in {
     imports = modules;
 
-    options.preferences.user.name = mkOption {
+    options.preferences.mainUser.username = mkOption {
       type = types.str;
-      default = "aboba";
+      default = "user01";
     };
 
     config = {

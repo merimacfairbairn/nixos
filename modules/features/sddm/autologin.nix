@@ -1,16 +1,11 @@
 {
-  self,
-  inputs,
-  ...
-}: {
   flake.modules.nixos.sddm-autologin = {
-    pkgs,
-    lib,
+    config,
     ...
   }: {
     services.displayManager = {
       autoLogin.enable = true;
-      autoLogin.user = "aboba";
+      autoLogin.user = "${config.preferences.mainUser.username}";
     };
   };
 }
