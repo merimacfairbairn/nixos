@@ -7,6 +7,7 @@
       networking
       hardware
       preservation
+      sops
     ];
   in {
     imports = modules;
