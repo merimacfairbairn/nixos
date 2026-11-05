@@ -19,7 +19,6 @@
             file = "/etc/machine-id";
             inInitrd = true;
           }
-          "/var/lib/auto-cryptenroll"
         ];
 
         directories = [
@@ -28,7 +27,6 @@
           "/var/log"
           "/var/lib/bluetooth"
           "/etc/NetworkManager/system-connections"
-          "/var/lib/sbctl"
           {
             directory = "/tmp";
             mode = "1777";

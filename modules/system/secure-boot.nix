@@ -21,18 +21,16 @@
         includeMicrosoftKeys = true;
       };
     };
+  };
 
-    # Enable measured boot
-    # boot.lanzaboote = {
-    #   configurationLimit = 4;  # Limit generations to 4 to prement error
-    #   measuredBoot = {
-    #     enable = true;
-    #     pcrs = [
-    #       0
-    #       4
-    #       7
-    #     ];
-    #   };
-    # };
+  flake.modules.nixos.preservation = {
+    preservation.preserveAt."/persist" = {
+      files = [
+        "/var/lib/auto-cryptenroll"
+      ];
+      directories = [
+        "/var/lib/sbctl"
+      ];
+    };
   };
 }
