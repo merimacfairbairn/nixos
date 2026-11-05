@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.wpaperd = moduleWithSystem ({self', ...}: {
+  flake.modules.nixos.wpaperd = moduleWithSystem ({self', ...}: {
     environment.systemPackages = with self'.packages; [
       wpaperd
     ];

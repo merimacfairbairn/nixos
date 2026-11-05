@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.sddm-autologin = {
+  flake.modules.nixos.sddm-autologin = {
     pkgs,
     lib,
     ...

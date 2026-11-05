@@ -1,5 +1,5 @@
 {...}: {
-  flake.nixosModules.upower = {pkgs, ...}: {
+  flake.modules.nixos.upower = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       upower
     ];

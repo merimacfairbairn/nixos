@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.user = {
+  flake.modules.nixos.user = {
     pkgs,
     lib,
     config,
@@ -8,7 +8,7 @@
     inherit (lib) mkOption types;
     username = config.preferences.user.name;
 
-    modules = with self.nixosModules; [
+    modules = with self.modules.nixos; [
       zsh
     ];
   in {

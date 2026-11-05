@@ -4,7 +4,7 @@
   ...
 }: {
   flake.nixosConfigurations.mobile01 = inputs.nixpkgs.lib.nixosSystem {
-    modules = with self.nixosModules; [
+    modules = with self.modules.nixos; [
       mobile01Config
       desktop
       development
@@ -16,7 +16,7 @@
     ];
   };
 
-  flake.nixosModules.mobile01Config = {...}: {
+  flake.modules.nixos.mobile01Config = {...}: {
     networking = {
       hostName = "mobile01";
     };

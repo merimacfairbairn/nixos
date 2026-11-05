@@ -1,5 +1,5 @@
 {moduleWithSystem, ...}: {
-  flake.nixosModules.nvidiaDrivers = moduleWithSystem ({pkgs, ...}: {
+  flake.modules.nixos.nvidiaDrivers = moduleWithSystem ({pkgs, ...}: {
     hardware.graphics = {
       enable = true;
       enable32bit = true;

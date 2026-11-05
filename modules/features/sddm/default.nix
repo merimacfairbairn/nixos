@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.sddm = {
+  flake.modules.nixos.sddm = {
     pkgs,
     lib,
     ...

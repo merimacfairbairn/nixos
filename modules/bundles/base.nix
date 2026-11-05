@@ -1,6 +1,6 @@
 {self, ...}: {
-  flake.nixosModules.base = {pkgs, ...}: let
-    modules = with self.nixosModules; [
+  flake.modules.nixos.base = {pkgs, ...}: let
+    modules = with self.modules.nixos; [
       nix
       user
       locale

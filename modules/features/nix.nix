@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.nix = moduleWithSystem ({self', ...}: {pkgs, ...}: {
+  flake.modules.nixos.nix = moduleWithSystem ({self', ...}: {pkgs, ...}: {
     nix = {
       settings = {
         cores = 6;

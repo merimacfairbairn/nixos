@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.securebootTPM = {
+  flake.modules.nixos.securebootTPM = {
     lib,
     pkgs,
     ...

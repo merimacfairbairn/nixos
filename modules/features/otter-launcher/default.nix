@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.otter-launcher = moduleWithSystem ({self', ...}: {
+  flake.modules.nixos.otter-launcher = moduleWithSystem ({self', ...}: {
     environment.systemPackages = [
       self'.packages.otter-launcher
     ];

@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.kitty = moduleWithSystem (
+  flake.modules.nixos.kitty = moduleWithSystem (
     {self'}: {
       environment.systemPackages = with self'.packages; [
         kitty

@@ -1,6 +1,6 @@
 {self, ...}: {
-  flake.nixosModules.desktop = let
-    modules = with self.nixosModules; [
+  flake.modules.nixos.desktop = let
+    modules = with self.modules.nixos; [
       base
       hyprland
       tailscale

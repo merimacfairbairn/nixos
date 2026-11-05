@@ -1,5 +1,5 @@
 {moduleWithSystem, ...}: {
-  flake.nixosModules.nvim = moduleWithSystem ({self', ...}: {
+  flake.modules.nixos.nvim = moduleWithSystem ({self', ...}: {
     programs.neovim = {
       enable = true;
       package = self'.packages.nvim;

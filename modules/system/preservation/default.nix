@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.preservation = {
+  flake.modules.nixos.preservation = {
     imports = [inputs.preservation.nixosModules.default];
 
     boot.tmp.cleanOnBoot = true;

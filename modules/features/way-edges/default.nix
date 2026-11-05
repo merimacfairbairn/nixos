@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.way-edges = moduleWithSystem ({self', ...}: {
+  flake.modules.nixos.way-edges = moduleWithSystem ({self', ...}: {
     environment.systemPackages = with self'.packages; [
       way-edges
     ];

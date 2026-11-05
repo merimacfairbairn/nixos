@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.zsh = moduleWithSystem ({
+  flake.modules.nixos.zsh = moduleWithSystem ({
     pkgs,
     self',
     ...

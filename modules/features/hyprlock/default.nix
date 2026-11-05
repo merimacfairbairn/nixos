@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.hyprlock = moduleWithSystem ({self', ...}: {
+  flake.modules.nixos.hyprlock = moduleWithSystem ({self', ...}: {
     environment.systemPackages = with self'.packages; [
       hyprlock
     ];

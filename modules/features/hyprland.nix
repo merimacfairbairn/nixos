@@ -3,12 +3,12 @@
   self,
   ...
 }: {
-  flake.nixosModules.hyprland = moduleWithSystem ({
+  flake.modules.nixos.hyprland = moduleWithSystem ({
     self',
     pkgs,
     ...
   }: {...}: let
-    modules = with self.nixosModules; [
+    modules = with self.modules.nixos; [
       audio
       systemTheme
       quickshell

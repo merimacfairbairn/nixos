@@ -1,6 +1,6 @@
 {self, ...}: {
-  flake.nixosModules.systemTheme = {...}: let
-    modules = with self.nixosModules; [
+  flake.modules.nixos.systemTheme = {...}: let
+    modules = with self.modules.nixos; [
       bibataCursors
       catppuccinGtk
     ];

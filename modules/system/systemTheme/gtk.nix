@@ -1,5 +1,5 @@
 {...}: {
-  flake.nixosModules.catppuccinGtk = {pkgs, ...}: {
+  flake.modules.nixos.catppuccinGtk = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       (catppuccin-gtk.override {
         variant = "mocha";

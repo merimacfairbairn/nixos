@@ -3,7 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.git = moduleWithSystem ({self', ...}: {...}: {
+  flake.modules.nixos.git = moduleWithSystem ({self', ...}: {...}: {
     environment.systemPackages = [
       self'.packages.git
     ];

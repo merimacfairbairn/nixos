@@ -1,5 +1,5 @@
 {moduleWithSystem, ...}: {
-  flake.nixosModules.steam = moduleWithSystem ({
+  flake.modules.nixos.steam = moduleWithSystem ({
     pkgs,
     inputs',
     lib,
