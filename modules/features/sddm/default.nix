@@ -1,8 +1,5 @@
 {
-  flake.modules.nixos.sddm = {
-    pkgs,
-    ...
-  }: {
+  flake.modules.nixos.sddm = {pkgs, ...}: {
     environment.systemPackages = [
       (pkgs.catppuccin-sddm.override {
         flavor = "mocha";
