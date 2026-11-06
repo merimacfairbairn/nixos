@@ -24,11 +24,15 @@
   };
 
   flake.modules.nixos.preservation = {
+    lib,
+    config,
+    ...
+  }: {
     preservation.preserveAt."/persist" = {
-      files = [
+      files = lib.mkIf config.boot.lanzaboote.autoEnrollKeys.enable [
         "/var/lib/auto-cryptenroll"
       ];
-      directories = [
+      directories = lib.mkIf config.boot.lanzaboote.enable [
         "/var/lib/sbctl"
       ];
     };
