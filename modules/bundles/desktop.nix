@@ -6,11 +6,27 @@
       tailscale
       sddm
     ];
-  in {pkgs, ...}: {
-    imports = modules;
+  in
+    {
+      pkgs,
+      config,
+      ...
+    }: {
+      imports = modules;
 
-    environment.systemPackages = with pkgs; [
-      keepassxc
-    ];
-  };
+      environment.systemPackages = with pkgs; [
+        keepassxc
+      ];
+
+      preservation.preserveAt."/persist" = {
+        directories = [
+          "/var/lib/sddm"
+        ];
+        users.${config.preferences.mainUser.username} = {
+          directories = [
+            ".mozilla/"
+          ];
+        };
+      };
+    };
 }
