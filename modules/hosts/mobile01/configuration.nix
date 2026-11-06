@@ -9,7 +9,6 @@
       desktop
       development
       upower
-      preservation
 
       self.diskoConfigurations.tmpfsRoot
       securebootTPM

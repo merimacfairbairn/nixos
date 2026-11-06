@@ -6,6 +6,7 @@
       locale
       networking
       hardware
+      preservation
     ];
   in {
     imports = modules;
