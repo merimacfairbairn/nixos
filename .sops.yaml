@@ -2,7 +2,8 @@ keys:
   - &test age1m3smkupnsmt0e2p0mf4zvz5773fum34g4a3e6d4eh4v8nj96muvq5vjpzn
   - &old_pc age15my7xd3l24f23ph8e9mkvnmzeqtnx8l0r0xkcpkttqncvd3ua92qmq23ju
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets\.(yaml|json|env|ini)$
     key_groups:
       - age:
         - *test
+        - *old_pc

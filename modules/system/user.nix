@@ -23,7 +23,7 @@
       users.users.${username} = {
         description = "${username}";
         isNormalUser = true;
-        initialPassword = "12345";
+        hashedPasswordFile = config.sops.secrets.user-password.path;
         shell = pkgs.zsh;
         extraGroups = [
           "wheel"
