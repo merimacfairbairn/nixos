@@ -6,7 +6,11 @@
       tailscale
       sddm
     ];
-  in {
+  in {pkgs, ...}: {
     imports = modules;
+
+    environment.systemPackages = with pkgs; [
+      keepassxc
+    ];
   };
 }
