@@ -37,6 +37,7 @@
           files = [];
           directories = [
             ".local/state/wireplumber"
+            ".ssh"
             "Documents"
             "Projects"
             "Media"
