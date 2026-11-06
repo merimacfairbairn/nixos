@@ -99,6 +99,14 @@
 
           	eval "$(${lib.getExe pkgs.devenv} hook zsh)"
 
+            if [[ -z "$TMUX" ]] && [[ $(tty) == /dev/tty1 ]]; then
+              if ${lib.getExe self'.packages.tmux} has-session 2>/dev/null; then
+                exec ${lib.getExe self'.packages.tmux} attach
+              else
+                exec ${lib.getExe self'.packages.tmux}
+              fi
+            fi
+
           	typeset -ag precmd_functions
           	if (( ! ''${precmd_functions[(I)__devenv_reload_apply]} )); then
           		precmd_functions+=(__devenv_reload_apply)
