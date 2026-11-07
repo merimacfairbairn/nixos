@@ -42,7 +42,7 @@
         };
 
         users.${config.preferences.mainUser.username} = {
-          files = [];
+          files = [ ".zsh_history" ];
           directories = [
             ".local/state/wireplumber"
             ".ssh"
