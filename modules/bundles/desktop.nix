@@ -21,6 +21,7 @@
       preservation.preserveAt."/persist" = {
         directories = [
           "/var/lib/sddm"
+          "/var/lib/tailscale"
         ];
         users.${config.preferences.mainUser.username} = {
           directories = [
