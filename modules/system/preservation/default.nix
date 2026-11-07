@@ -1,5 +1,9 @@
-{inputs, ...}: {
-  flake.modules.nixos.preservation = {config, ...}: {
+{
+  inputs,
+  moduleWithSystem,
+  ...
+}: {
+  flake.modules.nixos.preservation = moduleWithSystem ({flakeLocation, ...}: {config, lib, ...}: {
     imports = [inputs.preservation.nixosModules.default];
 
     boot.tmp.cleanOnBoot = true;
@@ -31,7 +35,11 @@
             directory = "/tmp";
             mode = "1777";
           }
-        ];
+        ] ++ lib.optional (flakeLocation != "") {
+            directory = flakeLocation;
+            user = config.preferences.mainUser.username;
+            group = "users";
+        };
 
         users.${config.preferences.mainUser.username} = {
           files = [];
@@ -45,5 +53,5 @@
         };
       };
     };
-  };
+  });
 }
