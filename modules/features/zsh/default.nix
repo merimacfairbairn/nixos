@@ -1,5 +1,6 @@
 {
   inputs,
+  self,
   moduleWithSystem,
   ...
 }: {
@@ -8,6 +9,8 @@
     self',
     ...
   }: {
+    imports = [self.modules.nixos.tmux];
+
     nixpkgs.overlays = [
       (final: prev: {
         zsh = self'.packages.zsh;
@@ -38,7 +41,7 @@
       inputs.wrappers.wrappers.zsh.wrap {
         inherit pkgs;
 
-        runtimePkgs = [pkgs.carapace pkgs.devenv pkgs.fzf];
+        runtimePkgs = [pkgs.carapace pkgs.devenv pkgs.fzf self'.packages.tmux];
 
         zshAliases = {
           ls = "${lib.getExe pkgs.lsd} -l";
