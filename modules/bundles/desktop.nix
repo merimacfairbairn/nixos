@@ -25,6 +25,7 @@
         users.${config.preferences.mainUser.username} = {
           directories = [
             ".mozilla/"
+            ".config/syncthing"
           ];
         };
       };
