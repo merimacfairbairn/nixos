@@ -99,7 +99,7 @@
 
           	eval "$(${lib.getExe pkgs.devenv} hook zsh)"
 
-            if [[ -z "$TMUX" ]] && [[ $(tty) == /dev/tty1 ]]; then
+            if [[ -z "$TMUX" ]]; then
               if ${lib.getExe self'.packages.tmux} has-session 2>/dev/null; then
                 exec ${lib.getExe self'.packages.tmux} attach
               else
