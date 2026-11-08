@@ -82,11 +82,11 @@
     systemd.services.systemd-machine-id-commit = {
       unitConfig.ConditionPathIsMountPoint = [
         ""
-        "/persistent/etc/machine-id"
+        "/persist/etc/machine-id"
       ];
       serviceConfig.ExecStart = [
         ""
-        "systemd-machine-id-setup --commit --root /persistent"
+        "systemd-machine-id-setup --commit --root /persist"
       ];
     };
   });
