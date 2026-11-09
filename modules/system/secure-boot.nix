@@ -20,16 +20,6 @@
         enable = true;
         includeMicrosoftKeys = true;
       };
-
-      configurationLimit = 4;
-      measuredBoot = {
-        enable = true;
-        pcrs = [
-          0
-          4
-          7
-        ];
-      };
     };
   };
 
@@ -41,11 +31,9 @@
     preservation.preserveAt."/persist" = {
       files = lib.mkIf config.boot.lanzaboote.autoEnrollKeys.enable [
         "/var/lib/auto-cryptenroll"
-        "/var/lib/systemd/pcrlock.json"
       ];
       directories = lib.mkIf config.boot.lanzaboote.enable [
         "/var/lib/sbctl"
-        "/var/lib/pcrlock.d"
       ];
     };
   };
