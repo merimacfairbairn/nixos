@@ -27,6 +27,7 @@
           directories = [
             ".config/mozilla"
             ".config/syncthing"
+            ".config/keepassxc"
           ];
         };
       };
