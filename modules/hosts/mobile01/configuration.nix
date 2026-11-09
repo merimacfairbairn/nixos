@@ -9,6 +9,7 @@
       desktop
       development
       upower
+      sddm-autologin
 
       self.diskoConfigurations.tmpfsRoot
       securebootTPM
