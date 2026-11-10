@@ -28,6 +28,7 @@
             ".config/mozilla"
             ".config/syncthing"
             ".config/keepassxc"
+            ".local/state/keepassxc"
           ];
         };
       };
