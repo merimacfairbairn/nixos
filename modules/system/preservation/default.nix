@@ -18,6 +18,11 @@
       efi.canTouchEfiVariables = true;
     };
 
+    security.sudo.extraConfig = ''
+      # rollback results in sudo lectures after each reboot
+      Defaults lecture = never
+    '';
+
     preservation = {
       enable = true;
 
