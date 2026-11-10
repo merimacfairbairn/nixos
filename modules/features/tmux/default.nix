@@ -83,6 +83,8 @@
           configBefore = ''
             set -g @catppuccin_flavor "mocha"
             set -g @catppuccin_date_time_text " %H:%M"
+            set -g @catppuccin_status_background "none"
+            set -g @catppuccin_window_status_style "rounded"
           '';
           # catppuccin v2 builds status modules after it is sourced
           configAfter = ''
