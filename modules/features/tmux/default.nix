@@ -82,15 +82,13 @@
           name = "catppuccin";
           configBefore = ''
             set -g @catppuccin_flavor "mocha"
-            set -g @catppuccin_date_time_text " %H:%M"
             set -g @catppuccin_status_background "none"
-            set -g @catppuccin_window_status_style "rounded"
+            set -g @catppuccin_window_status_style "slanted"
           '';
           # catppuccin v2 builds status modules after it is sourced
           configAfter = ''
             set -g status-left-length 100
             set -g status-left "#{E:@catppuccin_status_session}"
-            set -g status-right "#{E:@catppuccin_status_date_time}"
           '';
         }
         {
