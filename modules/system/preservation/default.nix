@@ -31,8 +31,6 @@
           {
             file = "/etc/machine-id";
             inInitrd = true;
-            how = "symlink";
-            configureParent = true;
           }
           {
             file = "/etc/ssh/ssh_host_ed25519_key";
@@ -75,24 +73,6 @@
           ];
         };
       };
-    };
-
-    # when the file does not exist yet, it is initialized with the string "uninitialized"
-    # to satisfy the firstboot condition
-    boot.initrd.systemd.tmpfiles.settings.preservation."/sysroot/state/etc/machine-id".f = {
-      argument = "uninitialized";
-    };
-
-    # let the service commit the transient ID to the persistent volume
-    systemd.services.systemd-machine-id-commit = {
-      unitConfig.ConditionPathIsMountPoint = [
-        ""
-        "/persist/etc/machine-id"
-      ];
-      serviceConfig.ExecStart = [
-        ""
-        "systemd-machine-id-setup --commit --root /persist"
-      ];
     };
   });
 }
