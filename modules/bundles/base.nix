@@ -21,6 +21,8 @@
       };
     };
 
+    programs.ssh.startAgent = false;
+
     environment.systemPackages = with pkgs; [
       vim
       unzip
