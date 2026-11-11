@@ -19,7 +19,7 @@
     };
 
     security.sudo.extraConfig = ''
-      # rollback results in sudo lectures after each reboot
+      # Disable lecturing
       Defaults lecture = never
     '';
 
@@ -74,5 +74,11 @@
         };
       };
     };
+
+    # systemd-machine-id-commit.service would fail, but it is not relevant
+    # in this specific setup for a persistent machine-id so we disable it
+    #
+    # see the firstboot example below for an alternative approach
+    systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
   });
 }
