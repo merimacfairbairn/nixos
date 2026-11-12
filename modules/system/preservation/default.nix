@@ -66,10 +66,25 @@
           files = [".zsh_history"];
           directories = [
             ".local/state/wireplumber"
+            ".cache/nix"
             ".ssh"
             "Documents"
             "Projects"
             "Media"
+          ];
+        };
+
+        users.root = {
+          home = "/root";
+          directories = [
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
+            {
+              directory = ".cache/nix";
+              mode = "0700";
+            }
           ];
         };
       };
