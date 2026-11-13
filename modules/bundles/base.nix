@@ -21,7 +21,12 @@
       };
     };
 
-    programs.ssh.startAgent = false;
+    programs.ssh = {
+      startAgent = false;
+      agentTimeout = "1h";
+    };
+
+    environment.sessionVariables.SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
 
     environment.systemPackages = with pkgs; [
       vim

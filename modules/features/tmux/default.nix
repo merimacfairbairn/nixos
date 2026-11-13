@@ -35,10 +35,6 @@
       # You bind y to wl-copy yourself, so don't use the built-in vi keys
       vimVisualKeys = false;
 
-      setEnvironment = {
-        SSH_AUTH_SOCK = "$HOME/.ssh/ssh_auth_sock";
-      };
-
       # wl-copy for copy-mode; tmux-yank also uses it
       runtimePkgs = [pkgs.wl-clipboard];
 
