@@ -91,6 +91,9 @@
 
           	setopt NO_CASE_GLOB
 
+            # As .zsh_history is persisted bind mounted
+            unsetopt HIST_SAVE_BY_COPY
+
           	if command -v ${lib.getExe pkgs.nix-your-shell} > /dev/null; then
           		${lib.getExe pkgs.nix-your-shell} -- zsh | source /dev/stdin
           	fi
