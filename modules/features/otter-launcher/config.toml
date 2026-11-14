@@ -84,12 +84,14 @@ with_argument = true
 url_encode = true
 unbind_proc = true
 
-# [[modules]]
-# description = "jellyfin"
-# prefix = "jf"
-# cmd = """
-# hyprctl dispatch  'hl.dsp.exec_cmd("kitty --class jf-tui -e jellyfin-tui", {workspace = "special:music"})'
-# """
+[[modules]]
+description = "Wi-Fi"
+prefix = "wl"
+cmd = """
+hyprctl dispatch 'hl.dsp.window.resize({x = 650, y = 400, window = activewindow})' &&
+hyprctl dispatch 'hl.dsp.window.center({window = activewindow})'&&
+nmtui
+"""
 
 [[modules]]
 description = "youtube"
