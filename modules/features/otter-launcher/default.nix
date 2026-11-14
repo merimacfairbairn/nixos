@@ -17,9 +17,11 @@
       otter-launcher = let
         extra-config = ''
           [image]
-          format = "symbol" # graphics protocols to use; options: kitty, sixel, iterm2, symbol
-          path = "${./cat.png}" # path to the image file
-          position = "left" # image placement; options: left, right, top, bottom
+          format = "kitty"
+          path = "${./cat.png}"
+          position = "left"
+          width = 15
+          padding = [0, 0, 0, 0]
         '';
 
         final-config = pkgs.writeText "config.toml" ''
