@@ -16,7 +16,7 @@
     packages = {
       otter-launcher = let
         extra-config = ''
-          [[image]]
+          [image]
           format = "symbol" # graphics protocols to use; options: kitty, sixel, iterm2, symbol
           path = "${./cat.png}" # path to the image file
           position = "left" # image placement; options: left, right, top, bottom
