@@ -92,10 +92,6 @@
           name = "yank";
         }
         {
-          plugin = pkgs.tmuxPlugins.copycat;
-          name = "copycat";
-        }
-        {
           plugin = pkgs.tmuxPlugins.resurrect;
           name = "resurrect";
         }
