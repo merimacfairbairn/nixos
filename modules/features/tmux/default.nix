@@ -7,6 +7,14 @@
     environment.systemPackages = [self'.packages.tmux];
   });
 
+  flake.modules.nixos.preservation = {config, ...}: {
+    preservation.preserveAt."/persist".users = {
+      ${config.preferences.mainUser.username}.directories = [
+        ".local/state/tmux-resurrect"
+      ];
+    };
+  };
+
   perSystem = {pkgs, ...}: {
     packages.tmux = inputs.wrappers.wrappers.tmux.wrap {
       inherit pkgs;
@@ -94,6 +102,9 @@
         {
           plugin = pkgs.tmuxPlugins.resurrect;
           name = "resurrect";
+          configBefore = ''
+            set -g @resurrect-dir '~/.local/state/tmux-resurrect'
+          '';
         }
         {
           plugin = pkgs.tmuxPlugins.continuum;
