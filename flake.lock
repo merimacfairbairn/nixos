@@ -941,11 +941,11 @@
     "quickshell": {
       "flake": false,
       "locked": {
-        "lastModified": 1794689199,
-        "narHash": "sha256-rTByau3QNQuFa9BHEukz725DbsD54koto8UGXon37Qw=",
+        "lastModified": 1794691242,
+        "narHash": "sha256-9ks4/iT3rwaQP5joBczMXeW4UZDZv9aWrIOuHACYUH0=",
         "owner": "merimacfairbairn",
         "repo": "quickshell",
-        "rev": "b79bb94320af6d3fd873c75d3e4181173c603b56",
+        "rev": "b75bf4d46388b8cc72a07b15135ec5112d025085",
         "type": "github"
       },
       "original": {
