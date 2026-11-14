@@ -25,7 +25,6 @@
           runtimePkgs = with pkgs; [
             fsel
             bluetui
-            nmtui
           ];
           flags = {
             "-c" = final-config;
