@@ -40,11 +40,6 @@ hint_color = "\u001B[30m" # suggestion color in hint mode
 move_interface_right = 21
 move_interface_down = 0
 
-[[image]]
-format = "symbol" # graphics protocols to use; options: kitty, sixel, iterm2, symbol
-path = "./cat.png" # path to the image file
-position = "left" # image placement; options: left, right, top, bottom
-
 [[modules]]
 description = "programs"
 prefix = "app"
