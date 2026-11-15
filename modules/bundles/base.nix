@@ -11,6 +11,7 @@
       networking
       hardware
       sops
+      vm
     ];
   in {
     imports = modules;
