@@ -27,12 +27,14 @@
     lib,
     config,
     ...
-  }: {
+  }: let
+    cfgLzb = config.boot.lanzaboote
+  in{
     preservation.preserveAt."/persist" = {
-      files = lib.mkIf config.boot.lanzaboote.autoEnrollKeys.enable [
+      files = lib.mkIf cfgLzb.autoEnrollKeys.enable [
         "/var/lib/auto-cryptenroll"
       ];
-      directories = lib.mkIf config.boot.lanzaboote.enable [
+      directories = lib.mkIf cfgLzb.enable [
         "/var/lib/sbctl"
       ];
     };
