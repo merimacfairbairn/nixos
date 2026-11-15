@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.modules.nixos.base = {pkgs, ...}: let
+  flake.modules.nixos.base = {
+    config,
+    pkgs,
+    ...
+  }: let
     modules = with self.modules.nixos; [
       nix
       user
@@ -15,8 +19,13 @@
     services = {
       openssh = {
         enable = true;
+        openFirewall = true;
         settings = {
-          PermitRootLogin = "yes";
+          PermitRootLogin = "no";
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          AllowUsers = [config.preferences.mainUser.username];
+          MaxAuthTries = 3;
         };
       };
     };

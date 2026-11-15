@@ -7,6 +7,9 @@
   }: let
     inherit (lib) mkOption types;
     username = config.preferences.mainUser.username;
+    sshKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwDtrUKf6KE6F3VyqZU9FXY7NLR2yo4+uJnhawIDRQN merimacfairbairn.git@gmail.com"
+    ];
 
     modules = with self.modules.nixos; [
       zsh
@@ -29,6 +32,8 @@
           "wheel"
           "networkmanager"
         ];
+
+        openssh.authorizedKeys.keys = sshKeys;
       };
     };
   };
