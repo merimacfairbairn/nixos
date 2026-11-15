@@ -28,8 +28,8 @@
     config,
     ...
   }: let
-    cfgLzb = config.boot.lanzaboote
-  in{
+    cfgLzb = config.boot.lanzaboote;
+  in {
     preservation.preserveAt."/persist" = {
       files = lib.mkIf cfgLzb.autoEnrollKeys.enable [
         "/var/lib/auto-cryptenroll"
