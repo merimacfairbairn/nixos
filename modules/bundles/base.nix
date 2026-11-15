@@ -10,7 +10,6 @@
       locale
       networking
       hardware
-      preservation
       sops
     ];
   in {

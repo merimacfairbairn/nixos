@@ -11,6 +11,7 @@
       upower
       sddm-autologin
 
+      preservation
       self.diskoConfigurations.tmpfsRoot
       securebootTPM
     ];
