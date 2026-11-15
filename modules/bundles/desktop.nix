@@ -5,6 +5,7 @@
       hyprland
       tailscale
       sddm
+      preservation
     ];
   in
     {
