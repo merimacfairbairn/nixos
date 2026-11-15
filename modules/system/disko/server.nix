@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.diskoConfigurations.server = {
+  flake.modules.nixos.diskoServer = {
     lib,
     config,
     ...

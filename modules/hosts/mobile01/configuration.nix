@@ -12,7 +12,7 @@
       sddm-autologin
 
       preservation
-      self.diskoConfigurations.tmpfsRoot
+      diskoTmpfsRoot
       securebootTPM
     ];
   };

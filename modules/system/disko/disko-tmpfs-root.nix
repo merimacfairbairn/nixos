@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.diskoConfigurations.tmpfsRoot = {
+  flake.modules.nixos.diskoTmpfsRoot = {
     lib,
     config,
     ...
