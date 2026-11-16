@@ -48,6 +48,7 @@
         Type = "oneshot";
         RemainAfterExit = true;
       };
+
       script = "${config.services.tailscale.package}/bin/tailscale serve --bg 2283";
     };
 

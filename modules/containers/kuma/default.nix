@@ -4,7 +4,7 @@
   in {
     systemd.tmpfiles.rules = ["d ${dir} 0755 root root -"];
 
-    systemd.services.tailscale-serve-immich = {
+    systemd.services.tailscale-serve-kuma = {
       after = ["tailscaled.service" "network-online.target"];
       wants = ["network-online.target"];
       wantedBy = ["multi-user.target"];
@@ -12,7 +12,7 @@
         Type = "oneshot";
         RemainAfterExit = true;
       };
-      script = "${config.services.tailscale.package}/bin/tailscale serve --bg https=8443 3001";
+      script = "${config.services.tailscale.package}/bin/tailscale serve --bg --https=8443 3001";
     };
 
     virtualisation.oci-containers.containers.uptime-kuma = {
