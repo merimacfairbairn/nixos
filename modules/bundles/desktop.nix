@@ -19,6 +19,8 @@
         keepassxc
       ];
 
+      virtualisation.vmVariant.virtualisation.graphics = true;
+
       preservation.preserveAt."/persist" = {
         directories = [
           "/var/lib/sddm"
