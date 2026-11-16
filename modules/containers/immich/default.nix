@@ -39,6 +39,18 @@
       script = "${docker} network inspect immich >/dev/null 2>&1 || ${docker} network create immich";
     };
 
+    # Server with tailscale
+    systemd.services.tailscale-serve-immich = {
+      after = ["tailscaled.service" "network-online.target"];
+      wants = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+      script = "${config.services.tailscale.package}/bin/tailscale serve --bg 2283";
+    };
+
     virtualisation.oci-containers.containers = {
       immich-postgres = {
         image = "ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0";
