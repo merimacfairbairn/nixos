@@ -4,6 +4,7 @@
       base
       docker
       tailscale
+      containers
     ];
   in {
     imports = modules;
