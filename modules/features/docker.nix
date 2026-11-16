@@ -8,6 +8,8 @@
       };
     };
 
+    virtualisation.oci-containers.backend = "docker";
+
     users.users.${config.preferences.mainUser.username}.extraGroups = ["docker"];
   };
 
