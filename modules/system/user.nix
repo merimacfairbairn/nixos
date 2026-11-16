@@ -26,7 +26,7 @@
       users.users.${username} = {
         description = "${username}";
         isNormalUser = true;
-        hashedPasswordFile = config.sops.secrets.user-password.path;
+        hashedPasswordFile = lib.mkDefault config.sops.secrets.user-password.path;
         shell = pkgs.zsh;
         extraGroups = [
           "wheel"

@@ -1,5 +1,9 @@
 {
-  flake.modules.nixos.vm = {lib, ...}: {
+  flake.modules.nixos.vm = {
+    config,
+    lib,
+    ...
+  }: {
     virtualisation.vmVariant = {
       # mkVMOverride (priority 10) beats mkForce (50), so it wins even if a host forces a value
 
@@ -22,8 +26,14 @@
           PasswordAuthentication = lib.mkVMOverride true;
         };
       };
-      users.users.root.initialPassword = lib.mkVMOverride "test";
+
+      # -- user password --
+      sops.secrets = lib.mkVMOverride {};
       users.mutableUsers = lib.mkVMOverride true;
+      users.users.${config.preferences.mainUser.username} = {
+        hashedPasswordFile = lib.mkVMOverride null;
+        initialPassword = "123";
+      };
 
       # --- VM sizing and access ---
       virtualisation = {
