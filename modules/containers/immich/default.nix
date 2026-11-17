@@ -4,8 +4,8 @@
     pkgs,
     ...
   }: let
-    host = config.preferences.tailnetHost;
     version = "release";
+    name = "immich";
     dir = "/var/lib/immich";
     docker = "${pkgs.docker}/bin/docker";
     net = ["--network=immich"];
@@ -19,7 +19,7 @@
 
     systemd.tmpfiles.rules = [
       "d ${dir}/upload 0755 root root -"
-      "d ${dir}/postgres 0700 root root -"
+      "d ${dir}/postgres 0700 999 999 -"
       "d ${dir}/model-cache 0755 root root -"
     ];
 
@@ -78,11 +78,22 @@
       };
     };
 
-    # https://<host>:2283
-    services.caddy.virtualHosts."${host}:2283".extraConfig = ''
-      reverse_proxy 127.0.0.1:12283
-    '';
-    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [2283];
+    systemd.services."tailscale-serve-${name}" = {
+      description = "Tailscale service ${name}";
+      after = ["tailscaled.service"];
+      wants = ["tailscaled.service"];
+      wantedBy = ["multi-user.target"];
+      path = [config.services.tailscale.package];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+      script = ''
+        until tailscale status --peers=false >/dev/null 2>&1; do sleep 2; done
+        tailscale serve --service=svc:${name} --https=443 http://localhost:12283
+      '';
+    };
   };
 }
-

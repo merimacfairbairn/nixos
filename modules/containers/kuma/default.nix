@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.containerKuma = {config, ...}: let
-    host = config.preferences.tailnetHost;
+    name = "uptime-kuma";
     dir = "/var/lib/uptime-kuma";
   in {
     systemd.tmpfiles.rules = ["d ${dir} 0755 root root -"];
@@ -11,10 +11,22 @@
       ports = ["127.0.0.1:13001:3001"];
     };
 
-    # https://<host>:3001
-    services.caddy.virtualHosts."${host}:3001".extraConfig = ''
-      reverse_proxy 127.0.0.1:13001
-    '';
-    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [3001];
+    systemd.services."tailscale-serve-${name}" = {
+      description = "Tailscale service ${name}";
+      after = ["tailscaled.service"];
+      wants = ["tailscaled.service"];
+      wantedBy = ["multi-user.target"];
+      path = [config.services.tailscale.package];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+      script = ''
+        until tailscale status --peers=false >/dev/null 2>&1; do sleep 2; done
+        tailscale serve --service=svc:${name} --https=443 http://localhost:13001
+      '';
+    };
   };
 }
