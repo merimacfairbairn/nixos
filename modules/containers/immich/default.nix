@@ -4,6 +4,7 @@
     pkgs,
     ...
   }: let
+    host = config.preferences.tailnetHost;
     version = "release";
     dir = "/var/lib/immich";
     docker = "${pkgs.docker}/bin/docker";
@@ -39,19 +40,6 @@
       script = "${docker} network inspect immich >/dev/null 2>&1 || ${docker} network create immich";
     };
 
-    # Server with tailscale
-    systemd.services.tailscale-serve-immich = {
-      after = ["tailscaled.service" "network-online.target"];
-      wants = ["network-online.target"];
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-      };
-
-      script = "${config.services.tailscale.package}/bin/tailscale serve --bg 2283";
-    };
-
     virtualisation.oci-containers.containers = {
       immich-postgres = {
         image = "ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0";
@@ -85,9 +73,16 @@
         };
         environmentFiles = envFile;
         volumes = ["${dir}/upload:/data" "/etc/localtime:/etc/localtime:ro"];
-        ports = ["127.0.0.1:2283:2283"];
+        ports = ["127.0.0.1:12283:2283"];
         extraOptions = net;
       };
     };
+
+    # https://<host>:2283
+    services.caddy.virtualHosts."${host}:2283".extraConfig = ''
+      reverse_proxy 127.0.0.1:12283
+    '';
+    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [2283];
   };
 }
+
