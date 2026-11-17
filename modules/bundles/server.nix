@@ -7,5 +7,7 @@
     ];
   in {
     imports = modules;
+
+    services.tailscale.extraUpFlags = ["--advertise-tags=tag:server"]
   };
 }
