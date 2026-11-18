@@ -4,6 +4,7 @@
       containerHomepage
       containerImmich
       containerKuma
+      containerHomeassistant
     ];
 
     # name = port mappings
