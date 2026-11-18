@@ -6,22 +6,9 @@
   }: let
     name = "home-assistant";
     dir = "/var/lib/homeassistant";
-
-    # Seeded once; HA owns the file afterwards (tmpfiles "C" never overwrites)
-    # Without trusted proxies HA returns 400 behind tailscale serve
-    seedConfig = pkgs.writeText "configuration.yaml" ''
-      default_config:
-
-      http:
-        use_x_forwarded_for: true
-        trusted_proxies:
-          - 127.0.0.1
-          - ::1
-    '';
   in {
     systemd.tmpfiles.rules = [
       "d ${dir} 0755 root root -"
-      "C ${dir}/configuration.yaml 0644 root root - ${seedConfig}"
     ];
 
     virtualisation.oci-containers.containers.homeassistant = {
