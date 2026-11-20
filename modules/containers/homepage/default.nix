@@ -16,7 +16,7 @@
       enable = true;
       listenPort = 13000;
       allowedHosts = "${name}.${config.tailnet}";
-      environmentFile = config.sops.templates."homepage.env".path;
+      environmentFiles = [config.sops.templates."homepage.env".path];
 
       services = [
         {
