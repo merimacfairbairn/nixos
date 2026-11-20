@@ -4,7 +4,7 @@
     pkgs,
     ...
   }: let
-    version = "release";
+    version = "v3.4.1";
     name = "immich";
     dir = "/var/lib/immich";
     docker = "${pkgs.docker}/bin/docker";
