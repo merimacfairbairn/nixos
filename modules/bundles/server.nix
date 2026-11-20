@@ -7,7 +7,11 @@
       containers
     ];
   in
-    {lib, ...}: {
+    {
+      pkgs,
+      lib,
+      ...
+    }: {
       imports = modules;
 
       options = {
@@ -29,6 +33,8 @@
           hibernate.enable = false;
           hybrid-sleep.enable = false;
         };
+
+        boot.kernelPackages = pkgs.linuxPackages;
       };
     };
 }
