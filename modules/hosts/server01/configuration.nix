@@ -27,6 +27,14 @@
       initialPassword = "123";
     };
 
+    services.logind = {
+      settings.Login = {
+        HandleLidSwitch = "ignore";
+        HandleLidSwitchExternalPower = "ignore";
+        HandleLidSwitchDocked = "ignore";
+      };
+    };
+
     imports = [
       ./_hardware-configuration.nix
     ];
