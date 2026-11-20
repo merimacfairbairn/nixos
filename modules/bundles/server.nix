@@ -22,6 +22,13 @@
         services.tailscale = {
           extraUpFlags = ["--advertise-tags=tag:server"];
         };
+
+        systemd.targets = {
+          sleep.enable = false;
+          suspend.enable = false;
+          hibernate.enable = false;
+          hybrid-sleep.enable = false;
+        };
       };
     };
 }
