@@ -3,13 +3,58 @@
     name = "homepage";
     dir = "/var/lib/homepage";
   in {
-    systemd.tmpfiles.rules = ["d ${dir} 0755 root root -"];
+    sops.secrets = {
+      immich-api-key.sopsFile = ../secrets/secrets.yaml;
+      ha-token.sopsFile = ../secrets/secrets.yaml;
+    };
+    sops.templates."homepage.env".content = ''
+      HOMEPAGE_VAR_IMMICH_KEY=${config.sops.placeholder.immich-api-key}
+      HOMEPAGE_VAR_HA_TOKEN=${config.sops.placeholder.ha-token}
+    '';
 
-    virtualisation.oci-containers.containers.homepage = {
-      image = "ghcr.io/gethomepage/homepage:latest";
-      ports = ["127.0.0.1:13000:3000"];
-      volumes = ["${dir}:/app/config"];
-      environment.HOMEPAGE_ALLOWED_HOSTS = "${name}.${config.tailnet}";
+    services.homepage-dashboard = {
+      enable = true;
+      listenPort = 13000;
+      allowedHosts = "${name}.${config.tailnet}";
+      environmentFile = config.sops.templates."homepage.env".path;
+
+      services = [
+        {
+          "Self-hosted" = [
+            {
+              Immich = {
+                href = "https://immich.${config.tailnet}";
+                widget = {
+                  type = "immich";
+                  url = "http://localhost:12283";
+                  key = "{{HOMEPAGE_VAR_IMMICH_KEY}}";
+                  version = 2;
+                };
+              };
+            }
+            {
+              "Uptime Kuma" = {
+                href = "https://uptime-kuma.${config.tailnet}";
+                widget = {
+                  type = "uptimekuma";
+                  url = "http://localhost:13001";
+                  slug = "homelab"; # slug of a Kuma status page
+                };
+              };
+            }
+            {
+              "Home Assistant" = {
+                href = "https://home-assistant.${config.tailnet}";
+                widget = {
+                  type = "homeassistant";
+                  url = "http://localhost:8123";
+                  key = "{{HOMEPAGE_VAR_HA_TOKEN}}";
+                };
+              };
+            }
+          ];
+        }
+      ];
     };
 
     systemd.services."tailscale-serve-${name}" = {
