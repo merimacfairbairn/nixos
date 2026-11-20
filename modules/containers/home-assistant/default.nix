@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   flake.modules.nixos.containerHomeassistant = {
     config,
     pkgs,
@@ -6,7 +6,11 @@
   }: let
     name = "home-assistant";
     dir = "/var/lib/homeassistant";
+
+    integrations = with self.modules.nixos; [integrationMatterServer];
   in {
+    imports = integrations;
+
     systemd.tmpfiles.rules = [
       "d ${dir} 0755 root root -"
     ];
