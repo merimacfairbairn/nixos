@@ -43,5 +43,10 @@
         tailscale serve --service=svc:${name} --https=443 http://localhost:8123
       '';
     };
+
+    networking.firewall.interfaces."wlp3s0" = {
+      allowedTCPPorts = [8123]; # HA, so the Companion app can reach it on LAN
+      allowedUDPPorts = [5353]; # mDNS replies, needed to discover the plug
+    };
   };
 }
