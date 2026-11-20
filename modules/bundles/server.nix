@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.modules.nixos.server = let
     modules = with self.modules.nixos; [
       base
@@ -35,6 +39,8 @@
         };
 
         boot.kernelPackages = pkgs.linuxPackages;
+
+        nix.nixPath = lib.mkForce ["nixpkgs=${inputs.nixpkgs-stable}"];
       };
     };
 }
