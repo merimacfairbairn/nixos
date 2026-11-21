@@ -6,13 +6,6 @@
       containerKuma
       containerHomeassistant
     ];
-
-    # name = port mappings
-    services = {
-      homepage = 13000;
-      immich = 12283;
-      kuma = 13001;
-    };
   in
     {
       lib,
