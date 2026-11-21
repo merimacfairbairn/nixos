@@ -15,7 +15,42 @@
     };
   };
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    lib,
+    pkgs,
+    ...
+  }: let
+    sessionizer = pkgs.writeShellApplication {
+      name = "tmux-sessionizer";
+      runtimeInputs = with pkgs; [fzf findutils coreutils procps];
+      text = ''
+        if [[ $# -eq 1 ]]; then
+          selected=$1
+        else
+          selected=$(find ~/Projects ~/Documents ~ -mindepth 1 -maxdepth 1 -type d | fzf)
+        fi
+
+        [[ -z $selected ]] && exit 0
+
+        selected_name=$(basename "$selected" | tr . _)
+
+        if [[ -z ''${TMUX:-} ]] && ! pgrep -x tmux >/dev/null; then
+          exec tmux new-session -s "$selected_name" -c "$selected"
+        fi
+
+        if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+          tmux new-session -ds "$selected_name" -c "$selected"
+        fi
+
+        if [[ -z ''${TMUX:-} ]]; then
+          tmux attach -t "$selected_name"
+        else
+          tmux switch-client -t "$selected_name"
+        fi
+      '';
+    };
+    sessionizerExe = lib.getExe sessionizer;
+  in {
     packages.tmux = inputs.wrappers.wrappers.tmux.wrap {
       inherit pkgs;
 
@@ -70,14 +105,13 @@
         bind '"' split-window -v -c "#{pane_current_path}"
 
         # Sessionizer
-        # bind-key -r f run-shell "tmux neww ~/.local/scripts/tmux-sessionizer"
-        # bind-key -r i run-shell "tmux neww ~/.local/scripts/tmux-cht.sh"
+        bind -r f new-window "${sessionizerExe}"
 
-        # bind-key -r S run-shell "~/.local/scripts/tmux-sessionizer ~/Projects/python/"
-        # bind-key -r C run-shell "~/.local/scripts/tmux-sessionizer ~/Projects/c/"
-        # bind-key -r G run-shell "~/.local/scripts/tmux-sessionizer ~/Projects/go"
-        # bind-key -r R run-shell "~/.local/scripts/tmux-sessionizer ~/Projects/rust"
-        # bind-key -r P run-shell "~/.local/scripts/tmux-sessionizer ~/Projects/"
+        bind -r P new-window "${sessionizerExe} ~/Projects/"
+        bind -r S new-window "${sessionizerExe} ~/Projects/python/"
+        bind -r C new-window "${sessionizerExe} ~/Projects/c/"
+        bind -r G new-window "${sessionizerExe} ~/Projects/go/"
+        bind -r R new-window "${sessionizerExe} ~/Projects/rust/"
       '';
 
       plugins = [
