@@ -73,7 +73,7 @@
         };
         environmentFiles = envFile;
         volumes = ["${dir}/upload:/data" "/etc/localtime:/etc/localtime:ro"];
-        ports = ["127.0.0.1:12283:2283"];
+        ports = ["12283:2283"];
         extraOptions = net;
       };
     };
@@ -94,6 +94,10 @@
         until tailscale status --peers=false >/dev/null 2>&1; do sleep 2; done
         tailscale serve --service=svc:${name} --https=443 http://localhost:12283
       '';
+    };
+
+    networking.firewall.interfaces."wlp3s0" = {
+      allowedTCPPorts = [12283];
     };
   };
 }
