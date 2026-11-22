@@ -20,10 +20,15 @@
       volumes = [
         "${dir}:/config"
         "/etc/localtime:/etc/localtime:ro"
+        "/run/dbus:/run/dbus:ro"
       ];
       # Host networking is needed so HA can broadcast-discover the plugs on your LAN.
       # HA then listens directly on :8123 (no `ports` mapping).
-      extraOptions = ["--network=host"];
+      extraOptions = [
+        "--network=host"
+        "--cap-add=NET_ADMIN"
+        "--cap-add=NET_RAW"
+      ];
     };
 
     systemd.services."tailscale-serve-${name}" = {
