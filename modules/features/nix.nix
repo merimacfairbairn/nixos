@@ -30,6 +30,16 @@
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     };
 
+    programs.nh = {
+      enable = true;
+      package = self'.packages.nh; # your wrapped nh
+      clean = {
+        enable = true;
+        dates = "weekly"; # or "daily"
+        extraArgs = "--keep-since 14d --keep 3";
+      };
+    };
+
     nixpkgs.config.allowUnfree = true;
 
     # Nix tooling
